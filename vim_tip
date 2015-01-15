@@ -1,0 +1,8 @@
+1.change whole line to lower/upper case:
+uppercase: gU$
+lowercase: gu$
+reverse lower/upper case: g~$
+
+2. vimdiff
+
+use ctrl+w J/L to swith between vertical and horizontal split.

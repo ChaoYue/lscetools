@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 
 #Purpose:
 #    Use ncks to subset the restart file according to lat1,lat2 lon1,lon2

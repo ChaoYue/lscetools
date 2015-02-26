@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 
 #how to use:
 # ./insert_line.py filein fileout linenumber string

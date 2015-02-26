@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 
 #2012-11-12
 #This is to compare the difference of vegetation type between two stomate_history files.

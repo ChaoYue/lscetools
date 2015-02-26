@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 
 #Purpose:
 #    This script is to show the vertex of lat/lon for a nc file.

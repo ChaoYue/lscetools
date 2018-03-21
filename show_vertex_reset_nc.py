@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/home/orchidee03/ychao/anaconda/bin/python
 
 #Purpose:
 #    This script is to show the vertex of lat/lon for a nc file.

@@ -1,7 +1,10 @@
-#!/usr/bin/env python
+#!/home/orchidee03/ychao/anaconda/bin/python
 
 import sys
 import mathex
+import os
+
+print "Work dir: ",os.getcwd()
 
 filename = sys.argv[1]
 if filename in ['-h','-help']:
@@ -15,7 +18,7 @@ if filename in ['-h','-help']:
 
     How to use:
     -----------
-    ~/lscetools/extract_varname.py /home/orchidee03/ychao/example.nc TOTAL_M pft_flag:area_flag
+    ~/lscetools/extract_varname.py /home/orchidee03/ychao/example.nc TOTAL_M pft_flag:area_flag [string: unit] [float: scale_factor]
 
     Parameters:
     -----------
@@ -39,11 +42,30 @@ if filename in ['-h','-help']:
 import gnc
 import numpy as np
 
-varname = sys.argv[2]
+arg_varname = sys.argv[2]
+if ',' in arg_varname:
+    varlist = arg_varname.split(',')
+else:
+    varlist = [arg_varname]
+
 try:
     flags = sys.argv[3]
 except IndexError:
     flags = 'all:fsum'
+
+try:
+    unit = '_'+sys.argv[4]
+except IndexError:
+    unit = ''
+
+try:
+    scale_factor = float(sys.argv[5])
+except IndexError:
+    scale_factor = 1
+
+print 'flags: ',flags
+print 'unit: ',unit
+print 'scale_factor: ',scale_factor
 
 pft_flag,area_flag = flags.split(':')
 
@@ -82,26 +104,29 @@ def treat_spatial(d,pftsum,area_flag='fsum'):
             raise ValueError("Unknow area flag")
 
 applymask=False
-gnc_china_border = gnc.Ncdata('/homel/ychao/Documents/data/Country_Border/China_mask_halfdegree.nc')
-mask=gnc_china_border.d1.land.mask
-print "Flag for applymask: ",applymask
+#gnc_china_border = gnc.Ncdata('/homel/ychao/Documents/data/Country_Border/China_mask_halfdegree.nc')
+#mask=gnc_china_border.d1.land.mask
+#print "Flag for applymask: ",applymask
 
 
 if not filename.endswith('.nc'):
     raise TypeError("Input file is not a nc file")
 else:
     d = gnc.Ncdata(filename)
-    outfilename = filename[:-3]+'_'+varname+'_PFT'+pft_flag+'_SPA'+area_flag+'.txt'
 
-    if pft_flag == 'none':
-        pftsum = d.d1.__dict__[varname]
-    else:
-        pftsum = get_pftsum(d,varname,pft_flag)
-    if applymask:
-        pftsum = mathex.ndarray_mask_smart_apply(pftsum,mask)
+    for varname in varlist:
+        outfilename = filename[:-3]+'_'+varname+'_PFT'+pft_flag+'_SPA'+area_flag+unit+'.txt'
 
-    outdata = treat_spatial(d,pftsum,area_flag)
-    np.savetxt(outfilename,outdata)
+        if pft_flag == 'none':
+            pftsum = d.d1.__dict__[varname]
+        else:
+            pftsum = get_pftsum(d,varname,pft_flag)
+        if applymask:
+            pftsum = mathex.ndarray_mask_smart_apply(pftsum,mask)
+
+        outdata = treat_spatial(d,pftsum,area_flag)
+        outdata = outdata * scale_factor
+        np.savetxt(outfilename,outdata)
 
 
 

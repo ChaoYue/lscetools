@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/home/orchidee03/ychao/anaconda/bin/python
 
 """
 This script is to remove the specified string from each line of a file and write into a new file.

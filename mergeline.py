@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/home/orchidee03/ychao/anaconda/bin/python
 
 """
 This script is for merging multiple lines from one file and write to another file.

@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/home/orchidee03/ychao/anaconda/bin/python
 
 #Purpose:
 #    Use ncks to subset the restart file according to lat1,lat2 lon1,lon2

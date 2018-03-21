@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/home/orchidee03/ychao/anaconda2/bin/python
 import pandas as pa
 import sys
 
@@ -13,6 +13,7 @@ print "The directories are:"
 print "----------------------------"
 print dft
 print '\n'
+print "total size: ",dft['size'].sum()
 print "space separated form:"
 print "----------------------------"
 print ' '.join([s[2:] for s in strlist])

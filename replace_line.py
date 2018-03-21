@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/home/orchidee03/ychao/anaconda/bin/python
 
 #how to use:
 # ./insert_line.py filein fileout linenumber string

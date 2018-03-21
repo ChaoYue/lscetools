@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/home/orchidee03/ychao/anaconda/bin/python
 
 #2012-11-12
 #This is to compare the difference of vegetation type between two stomate_history files.

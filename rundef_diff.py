@@ -5,17 +5,21 @@ import sys
 infile1 = sys.argv[1]
 if infile1 in ['-h','-help']:
     print """
-    Compare two run.def files, four parts will be distinguished:
-        keys with the same values in both files, keys appearing
-        in both files but with differnt values, and keys appearing in only
-        one of the two files.
+    Compare two run.def files. It will generate four output files. The first
+        pair of files (*_com) have four different sections: keys with the same
+        values in both files, keys appearing in both files but with differnt
+        values, and keys appearing in only one of the two files. The second pair
+        of files (*_mark) are copies of original run.def files but with different
+        keys being marked: a leading exclamation mark (!) indicates keys with
+        different values; a plus mark (+) indicates keys only appearing the
+        the current run.def
 
     How to use:
     -----------
     ./rundef_diff.py run.def.A run.def.B
 
-    It will generate another two files: run.def.A_com and run.def.B_com,
-        in which comparing results will be presented.
+    It will generate four files: run.def.A_com and run.def.B_com, run.def.A_mark
+    and run.def.B_mark.
 
     Notes:
     ------
